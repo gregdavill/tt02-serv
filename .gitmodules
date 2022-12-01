@@ -1,0 +1,3 @@
+[submodule "src/blocks/serv"]
+	path = src/blocks/serv
+	url = git@github.com:olofk/serv.git

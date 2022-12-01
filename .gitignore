@@ -2,3 +2,6 @@
 .idea
 .vscode
 *.vcd
+runs/
+scripts/gds_render.*
+src/user_config.tcl
