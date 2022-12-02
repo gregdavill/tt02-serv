@@ -24,12 +24,12 @@ module wb_mux
     output wire 	      o_wb_gpio_dat,
     output wire 	      o_wb_gpio_we,
     output wire 	      o_wb_gpio_cyc,
-    input wire 	      i_wb_gpio_rdt,
+    input wire 	      i_wb_gpio_rdt
   );
 
   parameter sim = 0;
 
-  wire  	  s = i_wb_cpu_adr[31:30];
+  wire  	  s = |i_wb_cpu_adr[31:30];
 
   assign o_wb_cpu_rdt = s ? {31'd0,i_wb_gpio_rdt} : i_wb_mem_rdt;
   always @(posedge i_clk)
