@@ -153,11 +153,13 @@ module gregdavill_serv_top(
     .clk_in          (clk),
     .data_in         (data),
     .scan_select_in  (scan_select),
+   .latch_enable_in (1'b0),
 
     // Pass all signals out from our internal scanchain, only really need data
     .clk_out         (io_out[0]),
     .data_out        (io_out[1]),
     .scan_select_out (io_out[2]),
+    .latch_enable_out (),
 
     // data
     .module_data_out ({
