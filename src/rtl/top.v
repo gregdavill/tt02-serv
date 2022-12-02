@@ -133,9 +133,17 @@ module gregdavill_serv_top(
     .o_dbus_we    (wb_dbus_we),
     .o_dbus_cyc   (wb_dbus_cyc),
     .i_dbus_rdt   (wb_dbus_rdt),
-    .i_dbus_ack   (wb_dbus_ack)
+    .i_dbus_ack   (wb_dbus_ack),
+    .o_ext_funct3 (),
+    .i_ext_ready  (1'b0),
+    .i_ext_rd     (32'd0),
+    .o_ext_rs1    (),
+    .o_ext_rs2    (),
+    .o_mdu_valid  ()
   );
 
+
+   wire	[58:0] dummy = 59'd0;
 
   scanchain_local #(
     .SCAN_LENGTH(96))
@@ -145,11 +153,13 @@ module gregdavill_serv_top(
     .clk_in          (clk),
     .data_in         (data),
     .scan_select_in  (scan_select),
+   .latch_enable_in (1'b0),
 
     // Pass all signals out from our internal scanchain, only really need data
     .clk_out         (io_out[0]),
     .data_out        (io_out[1]),
     .scan_select_out (io_out[2]),
+    .latch_enable_out (),
 
     // data
     .module_data_out ({
@@ -172,6 +182,7 @@ module gregdavill_serv_top(
       rreg1}),            // 5
 
     .module_data_in  ({
+      dummy,
       // Bus interface
       wb_mem_rdt,         // 32
       wb_mem_ack,         // 1

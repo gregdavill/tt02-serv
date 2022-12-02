@@ -1,0 +1,24 @@
+CAPI=2:
+
+name : tt02-serv
+
+filesets:
+  rtl:
+    files:
+      - src/rtl/top.v
+      - src/rtl/scanchain.v
+      - src/rtl/wb_mux.v
+    file_type : verilogSource
+    depend : [">=::servant:1.2.0"]
+  verilator:
+    files :
+      - src/skycells.v : {file_type : verilogSource}
+
+targets:
+  lint:
+    default_tool : verilator
+    filesets : [rtl, verilator]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : gregdavill_serv_top
