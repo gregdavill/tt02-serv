@@ -143,6 +143,8 @@ module gregdavill_serv_top(
   );
 
 
+   wire	[58:0] dummy = 59'd0;
+
   scanchain_local #(
     .SCAN_LENGTH(96))
   u_scanchain_local
@@ -178,6 +180,7 @@ module gregdavill_serv_top(
       rreg1}),            // 5
 
     .module_data_in  ({
+      dummy,
       // Bus interface
       wb_mem_rdt,         // 32
       wb_mem_ack,         // 1
